@@ -1,3 +1,2 @@
-math1/Add.go:4:	Add		100.0%
-math1/Sub.go:6:	Subtract	0.0%
-total:		(statements)	50.0%
+math1/Sub.go:4:	Subtract	100.0%
+total:		(statements)	100.0%
