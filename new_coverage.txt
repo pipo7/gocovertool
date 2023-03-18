@@ -1,0 +1,2 @@
+math1/Sub.go:4:	Subtract	100.0%
+total:		(statements)	100.0%
