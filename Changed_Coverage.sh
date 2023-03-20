@@ -1,5 +1,8 @@
 #!/usr/bin/env bash 
 
+# delete any existng file
+rm new_coverage*
+
 # Assumes the filename is cover.out
 # mode is SET " checks that each statement ran"
 go test ./... -covermode=set -coverprofile cover.out
