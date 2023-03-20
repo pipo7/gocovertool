@@ -31,12 +31,5 @@ func TestAdd(t *testing.T){
     if gotString != wantString {
         t.Errorf("got %q, wanted %q", gotString, wantString)
     }
-
-    // gotString = EvenOdd()
-    // wantString = "Invalid Operation"
-
-    // if gotString != wantString {
-    //     t.Errorf("got %q, wanted %q", gotString, wantString)
-    // }
     
 }
