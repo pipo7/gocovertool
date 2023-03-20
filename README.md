@@ -1,3 +1,6 @@
+## How go test --cover works:
+https://go.dev/blog/cover
+
 ## Legacy Coverage by go test and go cover
 
 generate the cover.out file using go test and calculate the Legacy code coverage
@@ -19,5 +22,9 @@ Push the CHANGED lines data into new_cover.out
 
 Next generate the coverage text report for NEW COVERAGE based on new coverage in new_cover.out
 ``` go tool cover -func new_cover.out | tee new_coverage.txt ```
+Note if new_coverage is empty that means no new coverage added in that case , use :
+``` go tool cover -func cover.out | tee coverage.txt ```
 
 Now the coverage results for NEW/Changed CODE are in new_coverage.txt and can be read by program/script.
+
+

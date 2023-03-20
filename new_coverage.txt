@@ -1,2 +1,3 @@
-math1/Sub.go:4:	Subtract	100.0%
-total:		(statements)	100.0%
+math1/Even.go:3:	EvenOdd		100.0%
+math1/Sub.go:5:		Subtract	100.0%
+total:			(statements)	100.0%
