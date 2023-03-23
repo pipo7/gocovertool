@@ -15,10 +15,29 @@ echo "mode: set" > new_coverage.out
 # --no-prefix Do not show any source or destination prefix.
 # -a treat all files as text
 # --exit-code Make the program exit with codes similar to diff(1). That is, it exits with 1 if there were differences and 0 means no differences.
-git diff HEAD --no-ext-diff --unified=0 --exit-code -a --no-prefix cover.out | egrep "^\+" | tail -n +2 | cut -c2- >> new_coverage.out 
+coverFileDiff=$(git diff HEAD --no-ext-diff --unified=0 --exit-code -a --no-prefix cover.out | egrep "^\+" | tail -n +2 | cut -c2-)
 
-# Generate new_coverage report
-go tool cover -func new_coverage.out | tee new_coverage.txt 
+if [ -z "$coverFileDiff" ]
+then
+  echo "No change in coverage"
+  FILE="coverage.txt"
+  if [ -f $FILE ]; then
+    TOTAL_COVERAGE=$(egrep '^total:.*(statements).*' $FILE | egrep -o '[0-9]+\.[0-9]+')
+    echo "Total coverage % is: $TOTAL_COVERAGE%"
+  fi
+else
+  echo "coverFileDiff is NOT empty thus creating new_coverage.txt file"
+  git diff HEAD --no-ext-diff --unified=0 --exit-code -a --no-prefix cover.out | egrep "^\+" | tail -n +2 | cut -c2- >> new_coverage.out 
+  # Generate new_coverage report
+  go tool cover -func new_coverage.out | tee new_coverage.txt 
+  # New Coverage html file
+  go tool cover -html new_coverage.out -o new_coverage.html
+  FILE="new_coverage.txt"
+  if [ -f $FILE ]; then
+    TOTAL_COVERAGE=$(egrep '^total:.*(statements).*' $FILE | egrep -o '[0-9]+\.[0-9]+')
+    echo "NEW coverage % is: $TOTAL_COVERAGE%"
+  fi
+fi
 
-# New Coverage html file
-go tool cover -html new_coverage.out -o coverage.html
+
+
