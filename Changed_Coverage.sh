@@ -2,6 +2,7 @@
 
 # delete any existng file
 rm -f new_coverage*
+sleep 5
 
 # Assumes the filename is cp.out
 # mode is SET " checks that each statement ran"
